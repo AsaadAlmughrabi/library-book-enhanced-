@@ -1,16 +1,24 @@
 import Toast from "@/app/components/Toast";
 import { useEffect, useState } from "react";
+import { bookData } from "@/app/data/book";
 
-function Form() {
+
+function Form({ addBook }) {
   const [showToast, setShowToast] = useState(false);
-  const [bookData, setBookData] = useState({});
+  const [bookForm, setBookData] = useState([]);
+  
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const name = e.target[0].value;
     const author = e.target[1].value;
     const genre = e.target[2].value;
-    setBookData({ name, author, genre });
+    const data={ name, author, genre }
+    addBook(data);
+    
+
+    setBookData([...bookData, data]);
+
     setShowToast(true);
   };
 
@@ -62,7 +70,7 @@ function Form() {
           </button>
         </form>
       </div>
-      {showToast && <Toast message={bookData} close={() => setShowToast(false)} />}
+      {showToast && <Toast message={bookForm} close={() => setShowToast(false)} />}
     </>
   );
 }

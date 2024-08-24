@@ -1,8 +1,10 @@
 function Toast(props) {
+  console.log(props);
+  
     return (
       <div
         id="toast-success"
-        className="fixed bottom-4 left-1/2 transform -translate-x-1/2 flex items-center w-full max-w-xs p-4 mb-10 text-gray-500 bg-white rounded-lg shadow dark:text-gray-400 dark:bg-gray-800 z-40"
+        className="fixed z-40 flex items-center w-full max-w-xs p-4 mb-10 text-gray-500 transform -translate-x-1/2 bg-white rounded-lg shadow bottom-4 left-1/2 dark:text-gray-400 dark:bg-gray-800"
         role="alert"
       >
         <div className="inline-flex items-center justify-center flex-shrink-0 w-8 h-8 text-green-500 bg-green-100 rounded-lg dark:bg-green-800 dark:text-green-200">
@@ -19,9 +21,9 @@ function Toast(props) {
         </div>
         <div className="flex flex-col ms-3">
           <div className="text-sm font-normal">Added successfully.</div>
-          <div className="text-sm font-normal">Title: {props.message.name}</div>
-          <div className="text-sm font-normal">Author: {props.message.auther}</div>
-          <div className="text-sm font-normal">Genre: {props.message.genre}</div>
+          <div className="text-sm font-normal">Title: {props.message[0].name}</div>
+          <div className="text-sm font-normal">Author: {props.message[0].author}</div>
+          <div className="text-sm font-normal">Genre: {props.message[0].genre}</div>
         </div>
         <button
           type="button"
