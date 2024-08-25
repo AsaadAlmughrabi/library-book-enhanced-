@@ -3,6 +3,7 @@ import "./globals.css";
 
 import Header from "./components/Header";
 import ThemeWrapper from "./context/theme";
+import AuthWrapper from "./context/auth";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -16,8 +17,10 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body>
         <ThemeWrapper>
+          <AuthWrapper>
           <Header />
           <main>{children}</main>
+          </AuthWrapper>
         </ThemeWrapper>
       </body>
     </html>

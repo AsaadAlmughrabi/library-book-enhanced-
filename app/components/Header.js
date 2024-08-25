@@ -1,10 +1,18 @@
 "use client";
-
 import React, { useContext } from 'react';  
 import { ThemeContext } from '../context/theme';  
+import { AuthContext } from '../context/auth';  
 
 function Header() {
-  const { isDarktheme, toggleThemeHandler } = useContext(ThemeContext); 
+  const { isDarktheme, toggleThemeHandler } = useContext(ThemeContext);
+  const { tokens, login, setGlobalLogin } = useContext(AuthContext);
+
+  const handleLogout = () => {
+    setGlobalLogin({
+      tokens: null,
+      login,
+    });
+  };
 
   return (
     <>
@@ -23,6 +31,14 @@ function Header() {
                               : "bg-gray-200 shadow-lg shadow-gray-400 after:content-['🌑'] after:bg-[#1d1d1d] after:right-1 after:translate-y-full after:opacity-0 before:content-['☀️'] before:opacity-100 before:rotate-0 before:translate-y-0"}`}
               ></div>
             </label>
+            {tokens && (
+              <button
+                onClick={handleLogout}
+                className="text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 shadow-lg shadow-cyan-500/50 dark:shadow-lg dark:shadow-cyan-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 ml-3"
+              >
+                Logout
+              </button>
+            )}
           </div>
           <div className="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-sticky">
             <ul className="flex flex-col p-4 mt-4 font-medium rounded-lg md:p-0 bg-slate-950 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 dark:bg-gray-800 md:dark:bg-slate-950 dark:border-gray-700">
@@ -47,4 +63,3 @@ function Header() {
 }
 
 export default Header;
-  
