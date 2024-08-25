@@ -5,12 +5,12 @@ import { AuthContext } from '../context/auth';
 
 function Header() {
   const { isDarktheme, toggleThemeHandler } = useContext(ThemeContext);
-  const { tokens, login, setGlobalLogin } = useContext(AuthContext);
+  const { tokens, username, setGlobalLogin } = useContext(AuthContext); // Access username
 
   const handleLogout = () => {
     setGlobalLogin({
       tokens: null,
-      login,
+      username: null, // Clear the username on logout
     });
   };
 
@@ -32,12 +32,15 @@ function Header() {
               ></div>
             </label>
             {tokens && (
-              <button
-                onClick={handleLogout}
-                className="text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 shadow-lg shadow-cyan-500/50 dark:shadow-lg dark:shadow-cyan-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 ml-3"
-              >
-                Logout
-              </button>
+              <>
+                <span className="ml-4 text-white">Welcome, {username}!</span> {/* Display welcome message */}
+                <button
+                  onClick={handleLogout}
+                  className="text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 shadow-lg shadow-cyan-500/50 dark:shadow-lg dark:shadow-cyan-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 ml-3"
+                >
+                  Logout
+                </button>
+              </>
             )}
           </div>
           <div className="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-sticky">

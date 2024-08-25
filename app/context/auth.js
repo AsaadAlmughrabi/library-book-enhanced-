@@ -8,15 +8,18 @@ export default function AuthWrapper({ children }) {
   const [globalLogin, setGlobalLogin] = useState({
     tokens: null,
     login: null,
+    username: null, // Add username to the state
   });
 
   async function login(data) {
     try {
       const url = "http://localhost:8000/api/token/";
       const res = await axios.post(url, data);
+      const username = data.username; 
       setGlobalLogin((prev) => ({
         ...prev,
         tokens: res.data,
+        username: username, 
       }));
       console.log(res.data);
     } catch (error) {
