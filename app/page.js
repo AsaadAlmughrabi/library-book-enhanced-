@@ -18,7 +18,7 @@ export default function Home() {
 
   return (
     <main>
-      <Header />
+     
       <BookSection />
       <Form addBook={addBook} />
       <BookCards books={sorted} />
