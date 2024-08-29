@@ -6,7 +6,7 @@ import useSWR from "swr";
 export default function useResource(){
 
    
-    const apiUrl = `http://localhost:8000/things/`;
+    const apiUrl = `${process.env.NEXT_PUBLIC_API_URL}things/`;
     console.log('url',apiUrl)
     const {tokens} = useContext(AuthContext);
     const {data, error, mutate} = useSWR([apiUrl,tokens],fetchResourse)
