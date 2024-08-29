@@ -8,6 +8,8 @@ import useSortedBooks from "@/app/custom_hook/useSortedBooks";
 import { bookData as data } from "@/app/data/book";
 import LogIn from "./components/login";
 import { AuthContext } from "@/app/context/auth";
+import BookCardsList from "./components/GetCardList";
+import Update_modal from "./components/UpdateModal";
 
 export default function Home() {
   const [bookData, setBookData] = useState(data);
@@ -25,7 +27,8 @@ export default function Home() {
         <>
           <BookSection />
           <Form addBook={addBook} />
-          <BookCards books={sorted} />
+          <Update_modal/>
+          <BookCardsList />
           <Footer />
         </>
       ) : (
