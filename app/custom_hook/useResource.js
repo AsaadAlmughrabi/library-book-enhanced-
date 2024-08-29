@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { AuthContext } from "../context/auth";
-import axios from "axios";
+
 import useSWR from "swr";
 
 export default function useResource(){

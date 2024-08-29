@@ -7,6 +7,8 @@ function UpdateModal({ isOpen, onClose, item }) {
     description: "",
     genre: "",
   });
+
+ 
   const { updateBook } = useResource();
 
   useEffect(() => {
@@ -30,7 +32,7 @@ function UpdateModal({ isOpen, onClose, item }) {
   const handleSubmit =  (e) => {
     e.preventDefault();
     try {
-        updateBook({ ...formData, id: item.id });
+        updateBook({ ...formData, id: item.id});
       onClose(); 
     } catch (err) {
       console.error("Error updating resource:", err);

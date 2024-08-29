@@ -1,20 +1,26 @@
 import Toast from "@/app/components/Toast";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { bookData } from "@/app/data/book";
 import useResource from "../custom_hook/useResource";
+import { jwtDecode } from "jwt-decode";
+import { AuthContext } from "../context/auth";
 
 function Form() {
   const [showToast, setShowToast] = useState(false);
   const [bookForm, setBookData] = useState([]);
   const { addBook } = useResource();
+  const { tokens } = useContext(AuthContext);
+  const { user_id } = jwtDecode(tokens.access);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const title = e.target[0].value;
     const description = e.target[1].value;
     const genre = e.target[2].value;
-    const user = 1;
+    const user = user_id;
     const data = {  title:title, description:description, genre, user };
+    console.log(",,,,,,,,,,,,,,,,,,,,,,,,",user_id);
+    
 
     setBookData([...bookData, data]);
 
@@ -32,6 +38,8 @@ function Form() {
       }, 2000);
     }
   }, [showToast]);
+
+
 
   return (
     <>
